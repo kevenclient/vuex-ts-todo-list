@@ -17,7 +17,3 @@ export default defineComponent({
   name: 'TodoForm',
 });
 </script>
-
-<style scoped>
-
-</style>

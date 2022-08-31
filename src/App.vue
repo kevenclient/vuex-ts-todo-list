@@ -16,11 +16,8 @@ import TodoList from './components/TodoList.vue';
 export default defineComponent({
   name: 'App',
   components: {
-    TodoForm, TodoList,
+    TodoForm,
+    TodoList,
   },
 });
 </script>
-
-<style scoped>
-
-</style>
