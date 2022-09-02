@@ -24,6 +24,9 @@ const { ADD_TODO } = Actions;
 
 export default defineComponent({
   name: 'TodoForm',
+  data: () => ({
+    description: '',
+  }),
   methods: {
     handleOnSubmit() {
       this.create({ description: this.description, status: Status.OPEN });
@@ -31,10 +34,9 @@ export default defineComponent({
     },
   },
   setup() {
-    const store = useStore(key);
+    const { dispatch } = useStore(key);
     return {
-      create: (todo: TodoItemInterface) => store.dispatch(ADD_TODO, todo),
-      description: '',
+      create: (todo: TodoItemInterface) => dispatch(ADD_TODO, todo),
     };
   },
 });
