@@ -23,9 +23,9 @@ export default defineComponent({
         return this.item?.status === Status.CLOSED;
       },
       set(value: boolean): void {
-        const item = this.item as TodoItemInterface;
-        item.status = value 
+        const status = value
           ? Status.CLOSED : Status.OPEN;
+        // update todo status by {...this.item, status}
       }
     },
     statusClass(): object {

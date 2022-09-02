@@ -1,19 +1,41 @@
 <template>
   <div class="card rounded-0 shadow mx-auto">
     <div class="card-body">
-      <div class="form-floating">
-        <input type="text" class="form-control border-0 shadow-none"
-          id="todo" placeholder="What needs to be done?">
-        <label for="todo">What needs to be done?</label>
-      </div>
+      <form @submit.prevent="handleOnSubmit">
+        <div class="form-floating">
+          <input type="text" class="form-control border-0 shadow-none"
+            id="todo" placeholder="What needs to be done?" v-model="description">
+          <label for="todo">What needs to be done?</label>
+        </div>
+      </form>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import TodoItemInterface from './../types/TodoItemInterface';
+import Status from './../enums/Status';
+import Actions from './../enums/Actions';
+import { useStore } from 'vuex';
+import { key } from './../store';
+
+const { ADD_TODO } = Actions;
 
 export default defineComponent({
   name: 'TodoForm',
+  methods: {
+    handleOnSubmit() {
+      this.create({ description: this.description, status: Status.OPEN });
+      this.description = '';
+    },
+  },
+  setup() {
+    const store = useStore(key);
+    return {
+      create: (todo: TodoItemInterface) => store.dispatch(ADD_TODO, todo),
+      description: '',
+    };
+  },
 });
 </script>
