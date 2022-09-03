@@ -14,13 +14,10 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import store from './../store';
+import { ADD_TODO } from './../store/actions';
 import TodoItemInterface from './../types/TodoItemInterface';
 import Status from './../enums/Status';
-import Actions from './../enums/Actions';
-import { useStore } from 'vuex';
-import { key } from './../store';
-
-const { ADD_TODO } = Actions;
 
 export default defineComponent({
   name: 'TodoForm',
@@ -28,16 +25,13 @@ export default defineComponent({
     description: '',
   }),
   methods: {
-    handleOnSubmit() {
-      this.create({ description: this.description, status: Status.OPEN });
+    handleOnSubmit(): void {
+      const todo: TodoItemInterface = {
+        description: this.description, status: Status.OPEN,
+      };
+      store.dispatch(ADD_TODO, todo);
       this.description = '';
     },
-  },
-  setup() {
-    const { dispatch } = useStore(key);
-    return {
-      create: (todo: TodoItemInterface) => dispatch(ADD_TODO, todo),
-    };
   },
 });
 </script>

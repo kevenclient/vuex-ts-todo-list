@@ -1,10 +1,14 @@
-import Actions from './../enums/Actions';
 import TodoItemInterface from './../types/TodoItemInterface';
+import Status from './../enums/Status';
 
-const { ADD_TODO } = Actions;
+export const ADD_TODO = 'ADD_TODO';
+export const UPDATE_TODO = 'UPDATE_TODO';
 
 export default {
-  ADD_TODO: ({ commit }: any, todo: TodoItemInterface) => {
+  [ADD_TODO]: ({ commit }: any, todo: TodoItemInterface): void => {
     commit(ADD_TODO, todo);
+  },
+  [UPDATE_TODO]: ({ commit }: any, data: {todo: TodoItemInterface, status: Status}): void => {
+    commit(UPDATE_TODO, data);
   },
 };

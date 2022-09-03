@@ -11,6 +11,8 @@
 import { defineComponent, PropType } from 'vue';
 import TodoItemInterface from './../types/TodoItemInterface';
 import Status from './../enums/Status';
+import store from './../store';
+import { UPDATE_TODO } from './../store/actions';
 
 export default defineComponent({
   name: 'TodoItem',
@@ -25,7 +27,7 @@ export default defineComponent({
       set(value: boolean): void {
         const status = value
           ? Status.CLOSED : Status.OPEN;
-        // update todo status by {...this.item, status}
+        store.dispatch(UPDATE_TODO, {todo: this.item, status});
       }
     },
     statusClass(): object {
