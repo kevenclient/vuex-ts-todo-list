@@ -1,15 +1,25 @@
 <template>
-  <ul class="list-group shadow mb-3 mb-md-5">
-    <TodoItem v-for="(item, index) in todos"
-      :key="index" :item="item"/>
+  <ul class="list-group shadow">
+    <TodoItem v-for="item in todos"
+      :key="item.id" :item="item"/>
+  </ul>
+  <button v-if="closed.length" type="button"
+    class="btn btn-link shadow-none my-3" data-bs-toggle="collapse"
+    href="#collapseClosedTodos" aria-expanded="false">
+    {{ closed.length }} Completed items
+  </button>
+  <ul class="list-group shadow collapse"
+    id="collapseClosedTodos">
+    <TodoItem v-for="item in closed"
+      :key="item.id" :item="item"/>
   </ul>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 import TodoItem from './TodoItem.vue';
-import TodoItemInterface from './../types/TodoItemInterface';
-import store from './../store';
+import { mapGetters } from 'vuex';
+import { TODOS, CLOSED } from './../store/getters';
 
 export default defineComponent({
   name: 'TodoList',
@@ -17,7 +27,9 @@ export default defineComponent({
     TodoItem,
   },
   computed: {
-    todos: (): Array<TodoItemInterface> => store.state.todos,
+    ...mapGetters({
+      todos: TODOS, closed: CLOSED,
+    }),
   },
 });
 </script>

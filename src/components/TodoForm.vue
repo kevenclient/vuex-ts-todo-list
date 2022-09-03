@@ -18,6 +18,7 @@ import store from './../store';
 import { ADD_TODO } from './../store/actions';
 import TodoItemInterface from './../types/TodoItemInterface';
 import Status from './../enums/Status';
+import { v4 as uuid } from 'uuid';
 
 export default defineComponent({
   name: 'TodoForm',
@@ -26,8 +27,11 @@ export default defineComponent({
   }),
   methods: {
     handleOnSubmit(): void {
+      if (this.description === '') {
+        return;
+      }
       const todo: TodoItemInterface = {
-        description: this.description, status: Status.OPEN,
+        id: uuid(), description: this.description, status: Status.OPEN,
       };
       store.dispatch(ADD_TODO, todo);
       this.description = '';
