@@ -4,6 +4,10 @@
     <label class="form-check-label" :class="statusClass">
       {{ item?.description }}
     </label>
+    <button type="button" @click="handleOnClickDelete"
+      class="btn border-0 ms-auto align-self-start">
+      <i class="bi bi-trash-fill"/>
+    </button>
   </li>
 </template>
 
@@ -12,7 +16,7 @@ import { defineComponent, PropType } from 'vue';
 import TodoItemInterface from './../types/TodoItemInterface';
 import Status from './../enums/Status';
 import store from './../store';
-import { UPDATE_TODO } from './../store/actions';
+import { UPDATE_TODO, DELETE_TODO } from './../store/actions';
 
 export default defineComponent({
   name: 'TodoItem',
@@ -34,6 +38,11 @@ export default defineComponent({
       return {
         'text-decoration-line-through': this.closed,
       };
+    },
+  },
+  methods: {
+    handleOnClickDelete(): void {
+      store.dispatch(DELETE_TODO, this.item);
     },
   },
 });
