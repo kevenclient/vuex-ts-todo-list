@@ -6,7 +6,7 @@
     </label>
     <button type="button" @click="handleOnClickDelete"
       class="btn border-0 ms-auto align-self-start">
-      <i class="bi bi-trash-fill"/>
+      <i class="bi bi-x-lg"/>
     </button>
   </li>
 </template>
@@ -26,7 +26,10 @@ export default defineComponent({
   computed: {
     closed: {
       get(): boolean {
-        return this.item?.status === Status.CLOSED;
+        if (this.item === undefined) {
+          return false;
+        }
+        return this.item.status === Status.CLOSED;
       },
       set(value: boolean): void {
         const status = value

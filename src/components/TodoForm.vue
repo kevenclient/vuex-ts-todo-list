@@ -30,10 +30,11 @@ export default defineComponent({
       if (this.description === '') {
         return;
       }
-      const todo: TodoItemInterface = {
+
+      store.dispatch(ADD_TODO, {
         id: uuid(), description: this.description, status: Status.OPEN,
-      };
-      store.dispatch(ADD_TODO, todo);
+      } as TodoItemInterface);
+
       this.description = '';
     },
   },
