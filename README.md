@@ -1,12 +1,13 @@
-## Creating a Vue project with Vuex + Typescript
+# Creating a Vue project with Vuex + Typescript
 
-Create a new project
+## Create a new project with Vue CLI
 
 ```bash
 vue create vuex-ts-todo-list
 ```
 
-Presets
+## Presets
+
 ```bash
 Vue CLI v5.0.8
 ? Please pick a preset:
@@ -15,7 +16,8 @@ Vue CLI v5.0.8
 > Manually select features
 ```
 
-Features
+## Features
+
 ```bash
 ? Check the features needed for your project: (Press <space> to select, <a> to toggle all, <i> to invert selection, and <enter> to proceed)
   (*) Babel
@@ -29,24 +31,28 @@ Features
   ( ) E2E Testing
 ```
 
-Versions
+## Versions
+
 ```bash
 ? Choose a version of Vue.js that you want to start the project with (Use arrow keys)
 > 3.x
   2.x
 ```
 
-Vue class component
+## Vue class component
+
 ```bash
 ? Use class-style component syntax? (y/N) N
 ```
 
-Babel + TypeScript
+## Babel + TypeScript
+
 ```bash
 ? Use Babel alongside TypeScript (required for modern mode, auto-detected polyfills, transpiling JSX)? (Y/n) Y
 ```
 
-Linter / formatter
+## Linter / formatter
+
 ```bash
 ? Pick a linter / formatter config: (Use arrow keys)
 > ESLint with error prevention only
@@ -61,7 +67,8 @@ Linter / formatter
   ( ) Lint and fix on commit
 ```
 
-Configuration
+## Configuration
+
 ```bash
 ? Where do you prefer placing config for Babel, ESLint, etc.? (Use arrow keys)
 > In dedicated config files
@@ -72,7 +79,8 @@ Configuration
 ? Save this as a preset for future projects? (y/N) N
 ```
 
-Summary
+## Summary
+
 ```bash
 Vue CLI v5.0.8
 ? Please pick a preset: Manually select features
