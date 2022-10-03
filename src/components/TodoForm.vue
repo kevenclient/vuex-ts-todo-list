@@ -15,7 +15,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import store from './../store';
-import { ADD_TODO } from './../store/actions';
+import { CREATE_TODO } from './../store/actions';
 import TodoItemInterface from './../types/TodoItemInterface';
 import Status from './../enums/Status';
 import { v4 as uuid } from 'uuid';
@@ -31,7 +31,7 @@ export default defineComponent({
         return;
       }
 
-      store.dispatch(ADD_TODO, {
+      store.dispatch(CREATE_TODO, {
         id: uuid(), description: this.description, status: Status.OPEN,
       } as TodoItemInterface);
 
